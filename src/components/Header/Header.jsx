@@ -13,7 +13,6 @@ const Header = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
-                    {/* Fixed route */}
                     <Link to="/cart" className="position-relative">
                         <i className="bi bi-cart cart-icon"></i>
                         <Badge bg="secondary position-absolute cart-products-count">0</Badge>

@@ -4,6 +4,7 @@ import { Row, Col, Button, Image } from "react-bootstrap";
 import "./ProductPage.scss";
 
 const ProductPage = () => {
+     //static data
     const productObj = {
         "id": 1,
         "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
