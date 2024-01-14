@@ -1,25 +1,40 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+    getProductsCategoryArr,
+    filterProducts,
+    clearFilterProducts,
+} from "../../redux/slices/productsSlice";
 
 const Sidebar = () => {
-    const categoriesArr = ["men's clothing", "jewelery", "electronics"];
+    const categoriesArr = useSelector(getProductsCategoryArr);
+    const dispatch = useDispatch();
 
     const showCategories = categoriesArr.map((el, index) =>
-        <ListGroup.Item
+        <Form.Check
             key={index}
-            variant="light"
-            action
-        >
-            {el}
-        </ListGroup.Item>
+            label={el}
+            value={el}
+            type="radio"
+            name="categories"
+            onChange={(e) => dispatch(filterProducts(e.target.value))}
+        />
     );
 
     return (
-        <>
-            <ListGroup>
-                {showCategories}
-            </ListGroup>
-        </>
+        <Form>
+            <Form.Check
+                defaultChecked
+                label="All"
+                value="all"
+                type="radio"
+                name="categories"
+                onChange={() => dispatch(clearFilterProducts())}
+            />
+            {showCategories}
+        </Form>
     );
 };
 

@@ -7,7 +7,7 @@ const CartProductList = () => {
     //static data
     const cartProductsArr = [];
 
-    const showCartProducts = cartProductsArr?.map((el, index) =>
+    const showCartProducts = cartProductsArr.map((el, index) =>
         <ListGroup.Item key={index}>
             <CartProductListItem product={el} />
         </ListGroup.Item>);

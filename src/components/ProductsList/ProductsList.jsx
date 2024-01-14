@@ -1,28 +1,22 @@
 import React from "react";
-import { Button, Row, Form, InputGroup } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 import ProductCard from "../ProductCard/ProductCard";
+import ProductsListSearchForm from "../ProductsListSearchForm/ProductsListSearchForm";
+import ProductsListPagination from "../ProductsListPagination/ProductsListPagination";
 import useGetProductsArr from "../../hooks/useGetProductsArr";
 
 const ProductsList = () => {
     const productsArr = useGetProductsArr();
-    const showProducts = productsArr?.map((el, index) => <ProductCard key={index} product={el} />);
+    const showProducts = productsArr.map((el, index) => <ProductCard key={index} product={el} />);
 
     return (
         <>
-            <InputGroup className="mb-4 w-75 mx-auto">
-                <InputGroup.Text>
-                    <i className="bi bi-search"></i>
-                </InputGroup.Text>
-                <Form.Control
-                    type="text"
-                    placeholder="Я шукаю..."
-                />
-                <Button type="submit">Знайти</Button>
-            </InputGroup>
+            <ProductsListSearchForm />
             <Row>
                 {showProducts}
             </Row>
+            <ProductsListPagination />
         </>
     );
 };

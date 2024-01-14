@@ -7,7 +7,7 @@ const CheckoutProductList = () => {
      //static data
     const checkoutProductsArr = [];
 
-    const showCheckoutProducts = checkoutProductsArr?.map((el, index) =>
+    const showCheckoutProducts = checkoutProductsArr.map((el, index) =>
         <ListGroup.Item key={index}>
             <CheckoutProductListItem product={el} />
         </ListGroup.Item>);
