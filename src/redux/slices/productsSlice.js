@@ -18,34 +18,43 @@ const productsSlice = createSlice({
         filteredProductsArr: [],
         searchedProductsArr: [],
         currentPage: 0,
+        countProducts: 0,
         countProductsInPage: 6,
-        showingProductsArr: [],
         startShowingProduct: 0,
         endShowingProduct: 6,
+        currentProduct: {},
     },
     reducers: {
         filterProducts: (state, action) => {
             state.filteredProductsArr = (state.searchedProductsArr.length !== 0 ? state.searchedProductsArr : state.productsArr)
                 .filter(el => el.category.toLowerCase() === action.payload.toLowerCase());
+            state.currentPage = 0;
+            state.countProducts = state.filteredProductsArr.length;
             state.newProductsArr = state.filteredProductsArr;
         },
         clearFilterProducts: (state) => {
-            state.newProductsArr = [];
             state.filteredProductsArr = [];
+            state.newProductsArr = state.searchedProductsArr;
+            state.countProducts = state.searchedProductsArr.length !== 0 ? state.searchedProductsArr.length : state.productsArr.length;
         },
         searchProducts: (state, action) => {
             state.searchedProductsArr = (state.filteredProductsArr.length !== 0 ? state.filteredProductsArr : state.productsArr)
                 .filter(el => el.title.toLowerCase().includes(action.payload.toLowerCase()));
+            state.currentPage = 0;
+            state.countProducts = state.searchedProductsArr.length;
             state.newProductsArr = state.searchedProductsArr;
         },
         clearSearchProducts: (state) => {
-            state.newProductsArr = [];
             state.searchedProductsArr = [];
+            state.newProductsArr = state.filteredProductsArr;
+            state.countProducts = state.filteredProductsArr.length !== 0 ? state.filteredProductsArr.length : state.productsArr.length;
         },
         setCurrentPage: (state, action) => {
             state.currentPage = action.payload;
-            state.showingProductsArr = state.productsArr
-                .slice(state.startShowingProduct + (state.currentPage * state.countProductsInPage), state.endShowingProduct + (state.currentPage * state.countProductsInPage));
+            state.newProductsArr = state.productsArr;
+        },
+        setCurrentProduct: (state, action) => {
+            state.currentProduct = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -56,20 +65,19 @@ const productsSlice = createSlice({
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.statusApi = "success";
                 state.productsArr = action.payload;
+                state.countProducts = state.productsArr.length;
             })
             .addCase(fetchProducts.rejected, (state) => {
                 state.statusApi = "error";
             });
     },
     selectors: {
-        getProductsArr: (state) => {
-            if (state.newProductsArr.length !== 0) { return state.newProductsArr; }
-            else if (state.showingProductsArr.length !== 0) { return state.showingProductsArr; }
-            else { return state.productsArr.slice(state.startShowingProduct, state.endShowingProduct); }
-        },
-        getProductsCountPages: (state) => Math.ceil((state.newProductsArr.length !== 0 ? state.newProductsArr.length : state.productsArr.length) / state.countProductsInPage),
+        getProductsArr: (state) => (state.newProductsArr.length !== 0 ? state.newProductsArr : state.productsArr)
+            .slice(state.startShowingProduct + (state.currentPage * state.countProductsInPage), state.endShowingProduct + (state.currentPage * state.countProductsInPage)),
+        getProductsCountPages: (state) => Math.ceil(state.countProducts / state.countProductsInPage),
         getProductsCategoryArr: (state) => [...new Set(state.productsArr.map(el => el.category))],
         getCurrentPage: (state) => state.currentPage,
+        getCurrentProduct: (state) => state.currentProduct,
     },
 });
 
@@ -79,6 +87,7 @@ export const {
     searchProducts,
     clearSearchProducts,
     setCurrentPage,
+    setCurrentProduct,
 } = productsSlice.actions;
 
 export const {
@@ -86,6 +95,7 @@ export const {
     getProductsCountPages,
     getProductsCategoryArr,
     getCurrentPage,
+    getCurrentProduct,
 } = productsSlice.selectors;
 
 export default productsSlice.reducer;

@@ -14,7 +14,7 @@ const RoutesCreate = () => {
             <Route path="/" element={<MainPage />}>
                 <Route path="/" element={<ProductsList />} />
             </Route>
-            <Route path="/product" element={<ProductPage />} />
+            <Route path="/product/:productId" element={<ProductPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
         </Routes>
