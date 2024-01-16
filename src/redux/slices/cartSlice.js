@@ -15,6 +15,19 @@ const cartSlice = createSlice({
                 state.cartArr[indexProduct].counts ++;
             }
         },
+        incrementProductCounts: (state, action) => {
+            const addingProduct = state.cartArr.find(el => el.id === action.payload);
+            const indexProduct = state.cartArr.indexOf(addingProduct);
+            state.cartArr[indexProduct].counts ++;
+        },
+        decrementProductCounts: (state, action) => {
+            const addingProduct = state.cartArr.find(el => el.id === action.payload);
+            const indexProduct = state.cartArr.indexOf(addingProduct);
+            state.cartArr[indexProduct].counts - 1 > 0 && state.cartArr[indexProduct].counts --;
+        },
+        deleteProductFromCart: (state, action) => {
+            state.cartArr = state.cartArr.filter(el => el.id !== action.payload);
+        },
     },
     selectors: {
         getCartArr: (state) => state.cartArr,
@@ -24,6 +37,9 @@ const cartSlice = createSlice({
 
 export const {
     addProductToCart,
+    incrementProductCounts,
+    decrementProductCounts,
+    deleteProductFromCart,
 } = cartSlice.actions;
 
 export const {

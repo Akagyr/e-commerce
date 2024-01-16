@@ -22,7 +22,7 @@ const Header = () => {
                         <i className="bi bi-cart cart-icon"></i>
                         <Badge
                             bg="primary"
-                            className="position-absolute cart-products-count"
+                            className="position-absolute cart-products-count rounded-pill"
                         >
                             {countsProductsInCart}
                         </Badge>

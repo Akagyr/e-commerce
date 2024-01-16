@@ -1,15 +1,33 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { ListGroup, Button } from "react-bootstrap";
 
-import CartProductList from "../../components/CartProductList/CartProductList";
+import CartProductListItem from "../../components/CartProductListItem/CartProductListItem";
+import { getCartArr } from "../../redux/slices/cartSlice";
 
 const CartPage = () => {
+    const cartArr = useSelector(getCartArr);
+    const navigate = useNavigate();
+
+    const showCartProducts = cartArr.map((el, index) =>
+        <ListGroup.Item key={index}>
+            <CartProductListItem product={el} />
+        </ListGroup.Item>);
+
     return (
         <>
-            <CartProductList />
-            <div className="mt-4 text-end">
-                <Button>Оформити замовлення</Button>
-            </div>
+            {cartArr.length === 0
+                ? <h3 className="text-center">Корзина пуста</h3>
+                : <>
+                    <ListGroup>
+                        {showCartProducts}
+                    </ListGroup>
+                    <div className="mt-4 text-end">
+                        <Button onClick={() => navigate("/checkout")}>Оформити замовлення</Button>
+                    </div>
+                </>
+            }
         </>
     );
 };
