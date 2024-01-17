@@ -1,38 +1,48 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-
 import { Button, Tooltip, OverlayTrigger } from "react-bootstrap";
 
-import { addProductToCart } from "../../redux/slices/cartSlice";
-
-const ProductOverlay = ({ product }) => {
+const Overlay = ({
+    dispatchAction,
+    dispatchData,
+    showTime,
+    messageText,
+    overlayPlace = "right",
+    btnType = "button",
+    btnText,
+}) => {
     const [isShow, setIsShow] = useState(false);
     const dispatch = useDispatch();
 
-    const handleAddProductToCart = () => {
-        dispatch(addProductToCart(product));
+    const handleClick = () => {
+        dispatchAction && dispatch(dispatchAction(dispatchData));
         setIsShow(true);
         setTimeout(() => {
             setIsShow(false);
-        }, 1000);
+        }, showTime);
         return () => clearTimeout();
     };
 
     const renderTooltip = (props) => (
         <Tooltip {...props}>
-            Товар додано у кошик
+            {messageText}
         </Tooltip>
     );
 
     return (
         <OverlayTrigger
             show={isShow}
-            placement="right"
+            placement={overlayPlace}
             overlay={renderTooltip}
         >
-            <Button onClick={() => handleAddProductToCart()}>Придбати</Button>
+            <Button
+                type={btnType}
+                onClick={() => handleClick()}
+            >
+                {btnText}
+            </Button>
         </OverlayTrigger>
     );
 };
 
-export default ProductOverlay;
+export default Overlay;

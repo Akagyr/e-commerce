@@ -5,7 +5,8 @@ import { Row, Col, Image } from "react-bootstrap";
 import { getCurrentProduct } from "../../redux/slices/productsSlice";
 
 import "./ProductPage.scss";
-import ProductOverlay from "../../components/ProductOverlay/ProductOverlay";
+import Overlay from "../../components/Overlay/Overlay";
+import { addProductToCart } from "../../redux/slices/cartSlice";
 
 const ProductPage = () => {
     const product = useSelector(getCurrentProduct);
@@ -27,7 +28,13 @@ const ProductPage = () => {
                     {product.price}
                     <i className="bi bi-currency-dollar"></i>
                 </p>
-                <ProductOverlay product={product} />
+                <Overlay 
+                    dispatchAction={addProductToCart}
+                    dispatchData={product}
+                    showTime={1000}
+                    messageText="Товар додано у кошик"
+                    btnText="Придбати"
+                />
             </Col>
         </Row>
     );
