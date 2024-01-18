@@ -18,8 +18,7 @@ const CartProductListItem = ({ product }) => {
                 {product.title}
             </Col>
             <Col className="col-2">
-                {product.price}
-                <i className="bi bi-currency-dollar"></i>
+                {product.sumPrice} $
             </Col>
             <Col className="col-2 cart-product-count">
                 <i

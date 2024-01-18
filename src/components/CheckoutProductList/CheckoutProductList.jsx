@@ -11,7 +11,7 @@ const CheckoutProductList = ({ checkoutProductArr }) => {
         </ListGroup.Item>);
 
     return (
-        <ListGroup className="w-50 mx-auto mt-5 mb-5">
+        <ListGroup>
             {showCheckoutProducts}
         </ListGroup>
     );

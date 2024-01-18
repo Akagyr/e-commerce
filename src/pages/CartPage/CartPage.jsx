@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 
 import { getCartArr } from "../../redux/slices/cartSlice";
 import CartProductList from "../../components/CartProductList/CartProductList";
+import TotalPrice from "../../components/TotalPrice/TotalPrice";
 
 const CartPage = () => {
     const cartArr = useSelector(getCartArr);
@@ -16,7 +17,8 @@ const CartPage = () => {
                 ? <h3 className="text-center">Корзина пуста</h3>
                 : <>
                     <CartProductList cartArr={cartArr} />
-                    <div className="mt-4 mb-4 text-end">
+                    <TotalPrice />
+                    <div className="mt-4 text-end">
                         <Button onClick={() => navigate("/checkout")}>Оформити замовлення</Button>
                     </div>
                 </>

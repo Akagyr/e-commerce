@@ -78,6 +78,7 @@ const productsSlice = createSlice({
         getProductsCategoryArr: (state) => [...new Set(state.productsArr.map(el => el.category))],
         getCurrentPage: (state) => state.currentPage,
         getCurrentProduct: (state) => state.currentProduct,
+        getStatusApi: (state) => state.statusApi,
     },
 });
 
@@ -96,6 +97,7 @@ export const {
     getProductsCategoryArr,
     getCurrentPage,
     getCurrentProduct,
+    getStatusApi,
 } = productsSlice.selectors;
 
 export default productsSlice.reducer;

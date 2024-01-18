@@ -23,7 +23,7 @@ const CheckoutForm = ({ checkoutProductArr }) => {
     };
 
     return (
-        <Form className="w-50 mx-auto" onSubmit={handleSubmit} action="mailto:casha.mironyuk.2001@gmail.com" method="POST">
+        <Form onSubmit={handleSubmit} action="mailto:casha.mironyuk.2001@gmail.com" method="POST">
             <Form.Group as={Row} className="mb-3">
                 <Form.Label className="col-3">
                     Імʼя

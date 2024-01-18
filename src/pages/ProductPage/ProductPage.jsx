@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { Row, Col, Image } from "react-bootstrap";
 
 import { getCurrentProduct } from "../../redux/slices/productsSlice";
+import { addProductToCart } from "../../redux/slices/cartSlice";
+import Overlay from "../../components/Overlay/Overlay";
 
 import "./ProductPage.scss";
-import Overlay from "../../components/Overlay/Overlay";
-import { addProductToCart } from "../../redux/slices/cartSlice";
 
 const ProductPage = () => {
     const product = useSelector(getCurrentProduct);
@@ -24,10 +24,7 @@ const ProductPage = () => {
                     <span className="product-rate">{product.rating.rate}</span>
                 </p>
                 <p>{product.description}</p>
-                <p>
-                    {product.price}
-                    <i className="bi bi-currency-dollar"></i>
-                </p>
+                <p>{product.price} $</p>
                 <Overlay 
                     dispatchAction={addProductToCart}
                     dispatchData={product}

@@ -13,8 +13,7 @@ const CheckoutProductListItem = ({ product }) => {
                 {product.title}
             </Col>
             <Col className="col-2">
-                {product.price}
-                <i className="bi bi-currency-dollar"></i>
+                {product.sumPrice} $
             </Col>
         </Row>
     );

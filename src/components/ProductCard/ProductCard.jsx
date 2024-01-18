@@ -23,15 +23,11 @@ const ProductCard = ({ product }) => {
                 <Card.Body>
                     <Card.Title className="text-truncate">{product.title}</Card.Title>
                     <Card.Text>{product.category}</Card.Text>
-                    <Card.Text>
-                        {product.price}
-                        <i className="bi bi-currency-dollar"></i>
-                    </Card.Text>
+                    <Card.Text>{product.price} $</Card.Text>
                     <Button variant="primary" size="sm">Придбати</Button>
                 </Card.Body>
             </Card>
         </Col >
-
     );
 };
 
