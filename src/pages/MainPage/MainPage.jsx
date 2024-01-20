@@ -7,10 +7,10 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 const MainPage = () => {
     return (
         <Row>
-            <Col as="aside" className="col-3">
+            <Col as="aside" className="col-md-3">
                 <Sidebar />
             </Col>
-            <Col className="col-9">
+            <Col className="col-12 col-md-9">
                 <Outlet />
             </Col>
         </Row>

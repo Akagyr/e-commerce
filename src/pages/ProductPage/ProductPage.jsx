@@ -13,10 +13,10 @@ const ProductPage = () => {
 
     return (
         <Row className="align-items-center">
-            <Col className="col-6 text-center align-items-center">
+            <Col className="col-md-6 col-12 text-center align-items-center">
                 <Image src={product.image} className="product-image" />
             </Col>
-            <Col className="col-6">
+            <Col className="col-md-6 col-12 product-description">
                 <h2 className="product-title">{product.title}</h2>
                 <p>{product.category}</p>
                 <p>

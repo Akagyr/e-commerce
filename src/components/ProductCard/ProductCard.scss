@@ -1,4 +1,38 @@
-.card-img {
-    max-width: 11.25rem;
-    height: 8.125rem;
+.product-card {
+    .card-img {
+        max-width: 60%;
+        height: 8.125rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .product-card {
+        .card-img {
+            height: 5rem;
+        }
+
+        .card-body {
+            .card-title {
+                font-size: 1rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .card-text {
+                font-size: 0.875rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .btn {
+                font-size: 0.75rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        .card-img {
+            height: 5rem;
+        }
+    }
 }

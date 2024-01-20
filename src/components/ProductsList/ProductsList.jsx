@@ -4,6 +4,7 @@ import { Row } from "react-bootstrap";
 import ProductCard from "../ProductCard/ProductCard";
 import ProductsListSearchForm from "../ProductsListSearchForm/ProductsListSearchForm";
 import ProductsListPagination from "../ProductsListPagination/ProductsListPagination";
+import FilterAccordion from "../FilterAccordion/FilterAccordion";
 import useGetProductsArr from "../../hooks/useGetProductsArr";
 
 const ProductsList = () => {
@@ -13,6 +14,7 @@ const ProductsList = () => {
     return (
         <>
             <ProductsListSearchForm />
+            <FilterAccordion />
             <Row>
                 {showProducts}
             </Row>

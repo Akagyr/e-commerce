@@ -1,4 +1,8 @@
-.cart-total-price {
+.total-price {
     font-size: 1.125rem;
     font-weight: bold;
+
+    @media (max-width: 578px) {
+        font-size: 1rem;
+    }
 }

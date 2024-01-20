@@ -1,0 +1,12 @@
+.filter-accordion {
+    .accordion-button {
+        font-size: 0.875rem;
+        padding: 0.375rem 0.625rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .filter-accordion {
+        display: none;
+    }
+}

@@ -10,7 +10,7 @@ const TotalPrice = () => {
 
     return (
         <div className="mt-4 text-end">
-            <p className="cart-total-price">До сплати: {totalPrice} $</p>
+            <p className="total-price">До сплати: {totalPrice} $</p>
         </div>
     );
 };

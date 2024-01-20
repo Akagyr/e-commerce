@@ -4,8 +4,10 @@ import emailjs from "emailjs-com";
 
 import Overlay from "../Overlay/Overlay";
 
+import "./CheckoutForm.scss";
+
 const CheckoutForm = ({ checkoutProductArr }) => {
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const message = `Замовлення:\n\n Ім'я: ${e.target.name.value}\n Пошта: ${e.target.email.value}\n Номер телефона: ${e.target.phone.value}\n\nТовари:\n\n ${checkoutProductArr.map(el => `${el.title} - ${el.counts} item(-s)\n`)}`;
@@ -23,8 +25,8 @@ const CheckoutForm = ({ checkoutProductArr }) => {
     };
 
     return (
-        <Form onSubmit={handleSubmit} action="mailto:casha.mironyuk.2001@gmail.com" method="POST">
-            <Form.Group as={Row} className="mb-3">
+        <Form className="checkout-form" onSubmit={handleSubmit}>
+            <Form.Group as={Row} className="mb-3 align-items-center">
                 <Form.Label className="col-3">
                     Імʼя
                 </Form.Label>
@@ -32,7 +34,7 @@ const CheckoutForm = ({ checkoutProductArr }) => {
                     <Form.Control type="text" name="name" placeholder="Імʼя" required />
                 </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mb-3">
+            <Form.Group as={Row} className="mb-3 align-items-center">
                 <Form.Label className="col-3">
                     Email
                 </Form.Label>
@@ -40,7 +42,7 @@ const CheckoutForm = ({ checkoutProductArr }) => {
                     <Form.Control type="email" name="email" placeholder="email@example.com" required />
                 </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mb-3">
+            <Form.Group as={Row} className="mb-3 align-items-center">
                 <Form.Label className="col-3">
                     Номер телефона
                 </Form.Label>
@@ -50,6 +52,7 @@ const CheckoutForm = ({ checkoutProductArr }) => {
             </Form.Group>
             <div className="mt-4 text-center">
                 <Overlay
+                    overlayPlace="top"
                     showTime={2000}
                     messageText="Вітаю! Замовлення надіслано!"
                     btnType="submit"

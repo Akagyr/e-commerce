@@ -20,7 +20,7 @@ const Loader = () => {
     return (
         <>
             {isShow &&
-                <div className="dotsContainer">
+                <div className="dots-container">
                     <div className="dot" />
                     <div className="dot" />
                     <div className="dot" />

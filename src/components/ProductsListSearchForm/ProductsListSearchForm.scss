@@ -1,0 +1,33 @@
+@media (min-width: 993px) {
+    .search-form-sm {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .search-form-lg {
+        display: none;
+    }
+
+    .search-form-sm {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-form-sm {
+        width: 100%;
+
+        .input-group {
+            .form-control,
+            .btn {
+                padding: 0.313rem 0.625rem;
+                font-size: 0.875rem;
+            }
+
+            .input-group-text {
+                padding: 0 0.5rem;
+            }
+        }
+    }
+}

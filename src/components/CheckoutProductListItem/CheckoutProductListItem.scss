@@ -1,3 +1,15 @@
-.cart-product-image {
+.checkout-product-list-image {
     height: 3.75rem;
+}
+
+@media (max-width: 568px) {
+    .checkout-product-list-image {
+        max-height: 3.125rem;
+        max-width: 100%;
+    }
+
+    .checkout-product-list-title,
+    .checkout-product-list-price {
+        font-size: 0.875rem;
+    }
 }

@@ -4,6 +4,8 @@ import { Pagination } from "react-bootstrap";
 
 import { getProductsCountPages, getCurrentPage, setCurrentPage } from "../../redux/slices/productsSlice";
 
+import "./ProductsListPagination.scss";
+
 const ProductsListPagination = () => {
     const currentPage = useSelector(getCurrentPage);
     const productsCountPages = useSelector(getProductsCountPages);
@@ -23,7 +25,9 @@ const ProductsListPagination = () => {
     }
 
     return (
-        <Pagination>{pagesArr}</Pagination>
+        <Pagination className="justify-content-center products-list-pagination">
+            {pagesArr}
+        </Pagination>
     );
 };
 

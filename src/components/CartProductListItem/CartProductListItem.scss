@@ -1,6 +1,6 @@
 .cart-product-image {
-    max-height: 6.25rem;
-    max-width: 5.625rem;
+    max-height: 3.75rem;
+    max-width: 60%;
 }
 
 .cart-product-count {
@@ -11,5 +11,47 @@
     span {
         margin-left: 0.313rem;
         margin-right: 0.313rem;
+    }
+}
+
+@media (max-width: 786px) {
+    .cart-product-image {
+        max-width: 100%;
+    }
+
+    .cart-product-title,
+    .cart-product-price,
+    .cart-product-btn {
+        font-size: 0.813rem;
+    }
+
+    .cart-product-count {
+        i {
+            font-size: 1rem;
+        }
+
+        span {
+            font-size: 0.875rem;
+        }
+    }
+}
+
+@media (min-width: 579px) {
+    .cart-product-list-item-sm {
+        display: none;
+    }
+}
+
+@media (max-width: 578px) {
+    .cart-product-list-item-lg {
+        display: none;
+    }
+
+    .cart-product-title {
+        margin-bottom: 0.625rem;
+    }
+
+    .cart-product-btn {
+        font-size: 0.75rem;
     }
 }
