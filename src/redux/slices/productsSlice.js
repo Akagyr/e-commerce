@@ -23,11 +23,13 @@ const productsSlice = createSlice({
         startShowingProduct: 0,
         endShowingProduct: 6,
         currentProduct: {},
+        currentCategory: "",
     },
     reducers: {
         filterProducts: (state, action) => {
+            state.currentCategory = action.payload;
             state.filteredProductsArr = (state.searchedProductsArr.length !== 0 ? state.searchedProductsArr : state.productsArr)
-                .filter(el => el.category.toLowerCase() === action.payload.toLowerCase());
+                .filter(el => el.category === action.payload);
             state.currentPage = 0;
             state.countProducts = state.filteredProductsArr.length;
             state.newProductsArr = state.filteredProductsArr;
@@ -38,16 +40,11 @@ const productsSlice = createSlice({
             state.countProducts = state.searchedProductsArr.length !== 0 ? state.searchedProductsArr.length : state.productsArr.length;
         },
         searchProducts: (state, action) => {
-            state.searchedProductsArr = (state.filteredProductsArr.length !== 0 ? state.filteredProductsArr : state.productsArr)
-                .filter(el => el.title.toLowerCase().includes(action.payload.toLowerCase()));
+            state.currentCategory = "";
+            state.searchedProductsArr = state.productsArr.filter(el => el.title.toLowerCase().includes(action.payload.toLowerCase()));
             state.currentPage = 0;
             state.countProducts = state.searchedProductsArr.length;
             state.newProductsArr = state.searchedProductsArr;
-        },
-        clearSearchProducts: (state) => {
-            state.searchedProductsArr = [];
-            state.newProductsArr = state.filteredProductsArr;
-            state.countProducts = state.filteredProductsArr.length !== 0 ? state.filteredProductsArr.length : state.productsArr.length;
         },
         setCurrentPage: (state, action) => {
             state.currentPage = action.payload;
@@ -79,6 +76,7 @@ const productsSlice = createSlice({
         getCurrentPage: (state) => state.currentPage,
         getCurrentProduct: (state) => state.currentProduct,
         getStatusApi: (state) => state.statusApi,
+        getCurrentCategory: (state) => state.currentCategory,
     },
 });
 
@@ -86,7 +84,6 @@ export const {
     filterProducts,
     clearFilterProducts,
     searchProducts,
-    clearSearchProducts,
     setCurrentPage,
     setCurrentProduct,
 } = productsSlice.actions;
@@ -98,6 +95,7 @@ export const {
     getCurrentPage,
     getCurrentProduct,
     getStatusApi,
+    getCurrentCategory,
 } = productsSlice.selectors;
 
 export default productsSlice.reducer;

@@ -2,7 +2,7 @@ import React from "react";
 import { Row } from "react-bootstrap";
 
 import ProductCard from "../ProductCard/ProductCard";
-import ProductsListSearchForm from "../ProductsListSearchForm/ProductsListSearchForm";
+import SearchForm from "../SearchForm/SearchForm";
 import ProductsListPagination from "../ProductsListPagination/ProductsListPagination";
 import FilterAccordion from "../FilterAccordion/FilterAccordion";
 import useGetProductsArr from "../../hooks/useGetProductsArr";
@@ -13,7 +13,7 @@ const ProductsList = () => {
 
     return (
         <>
-            <ProductsListSearchForm />
+            <SearchForm />
             <FilterAccordion />
             <Row>
                 {showProducts}

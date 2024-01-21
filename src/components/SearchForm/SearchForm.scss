@@ -1,24 +1,19 @@
-@media (min-width: 993px) {
-    .search-form-sm {
-        display: none;
-    }
+.search-form {
+    width: 75%;
 }
 
 @media (max-width: 992px) {
-    .search-form-lg {
-        display: none;
-    }
-
-    .search-form-sm {
+    .search-form {
         width: 90%;
     }
 }
 
 @media (max-width: 768px) {
-    .search-form-sm {
+    .search-form {
         width: 100%;
 
         .input-group {
+
             .form-control,
             .btn {
                 padding: 0.313rem 0.625rem;

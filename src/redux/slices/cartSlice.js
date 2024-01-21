@@ -4,6 +4,7 @@ const cartSlice = createSlice({
     name: "cart",
     initialState: {
         cartArr: [],
+        message: "",
     },
     reducers: {
         addProductToCart: (state, action) => {
@@ -31,6 +32,15 @@ const cartSlice = createSlice({
         deleteProductFromCart: (state, action) => {
             state.cartArr = state.cartArr.filter(el => el.id !== action.payload);
         },
+        setMessage: (state, action) => {
+            state.message = action.payload;
+        },
+        clearMessage: (state) => {
+            state.message = "";
+        },
+        clearCart: (state) => {
+            state.cartArr = [];
+        },
     },
     selectors: {
         getCartArr: (state) => state.cartArr,
@@ -38,6 +48,7 @@ const cartSlice = createSlice({
         getTotalPrice: (state) => state.cartArr.reduce((accumulator, object) => {
             return accumulator + object.sumPrice;
         }, 0).toFixed(2),
+        getMessage: (state) => state.message,
     },
 });
 
@@ -46,12 +57,16 @@ export const {
     incrementProductCounts,
     decrementProductCounts,
     deleteProductFromCart,
+    setMessage,
+    clearMessage,
+    clearCart,
 } = cartSlice.actions;
 
 export const {
     getCartArr,
     getCountProductsInCart,
     getTotalPrice,
+    getMessage,
 } = cartSlice.selectors;
 
 export default cartSlice.reducer;

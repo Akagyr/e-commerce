@@ -1,17 +1,22 @@
 import React from "react";
-import { Form, Row, Col } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import emailjs from "emailjs-com";
 
-import Overlay from "../Overlay/Overlay";
+import { setMessage, clearCart } from "../../redux/slices/cartSlice";
 
 import "./CheckoutForm.scss";
 
 const CheckoutForm = ({ checkoutProductArr }) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(setMessage("Вітаю, замовлення зроблено!"));
+        
         const message = `Замовлення:\n\n Ім'я: ${e.target.name.value}\n Пошта: ${e.target.email.value}\n Номер телефона: ${e.target.phone.value}\n\nТовари:\n\n ${checkoutProductArr.map(el => `${el.title} - ${el.counts} item(-s)\n`)}`;
-
         console.log(message);
 
         const templateParams = {
@@ -22,6 +27,9 @@ const CheckoutForm = ({ checkoutProductArr }) => {
             message: message,
         };
         emailjs.send("service_60461lb", "template_9iya8wn", templateParams, "ojBoTbNUh-9ltG-Fl");
+        
+        dispatch(clearCart());
+        navigate("/");
     };
 
     return (
@@ -51,13 +59,7 @@ const CheckoutForm = ({ checkoutProductArr }) => {
                 </Col>
             </Form.Group>
             <div className="mt-4 text-center">
-                <Overlay
-                    overlayPlace="top"
-                    showTime={2000}
-                    messageText="Вітаю! Замовлення надіслано!"
-                    btnType="submit"
-                    btnText="Оформити замовлення"
-                />
+                <Button type="submit">Оформити замовлення</Button>
             </div>
         </Form>
     );
