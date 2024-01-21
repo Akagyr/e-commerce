@@ -48,7 +48,6 @@ const productsSlice = createSlice({
         },
         setCurrentPage: (state, action) => {
             state.currentPage = action.payload;
-            state.newProductsArr = state.productsArr;
         },
         setCurrentProduct: (state, action) => {
             state.currentProduct = action.payload;
