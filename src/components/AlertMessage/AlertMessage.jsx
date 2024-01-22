@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "react-bootstrap";
 
 import { getMessage, clearMessage } from "../../redux/slices/cartSlice";
+import { getErrorMessageApi } from "../../redux/slices/productsSlice";
 
 import "./AlertMessage.scss";
 
 const AlertMessage = () => {
     const message = useSelector(getMessage);
+    const errorMessageApi = useSelector(getErrorMessageApi);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,12 +20,25 @@ const AlertMessage = () => {
     }, [message]);
 
     return (
-        <Alert
-            className="position-absolute-center text-center"
-            variant="success"
-            show={!!message}>
-            {message}
-        </Alert>
+        <>
+            {message &&
+                <Alert
+                    className="position-absolute-center text-center"
+                    variant="success"
+                >
+                    {message}
+                </Alert >
+            }
+            {
+                errorMessageApi &&
+                <Alert
+                    className="position-absolute-center text-center"
+                    variant="danger"
+                >
+                    {errorMessageApi}
+                </Alert >
+            }
+        </>
     );
 };
 

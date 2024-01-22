@@ -4,8 +4,12 @@ import axios from "axios";
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async () => {
-        const { data } = await axios.get("https://fakestoreapi.com/products");
-        return data;
+        try {
+            const { data } = await axios.get("https://fakestoreapi.com/products");
+            return data;
+        } catch (error) {
+            throw error;
+        }
     }
 );
 
@@ -14,6 +18,7 @@ const productsSlice = createSlice({
     initialState: {
         productsArr: [],
         statusApi: "",
+        errorMessageApi: "",
         newProductsArr: [],
         filteredProductsArr: [],
         searchedProductsArr: [],
@@ -63,8 +68,9 @@ const productsSlice = createSlice({
                 state.productsArr = action.payload;
                 state.countProducts = state.productsArr.length;
             })
-            .addCase(fetchProducts.rejected, (state) => {
+            .addCase(fetchProducts.rejected, (state, action) => {
                 state.statusApi = "error";
+                state.errorMessageApi = action.error.message;
             });
     },
     selectors: {
@@ -76,6 +82,7 @@ const productsSlice = createSlice({
         getCurrentProduct: (state) => state.currentProduct,
         getStatusApi: (state) => state.statusApi,
         getCurrentCategory: (state) => state.currentCategory,
+        getErrorMessageApi: (state) => state.errorMessageApi,
     },
 });
 
@@ -95,6 +102,7 @@ export const {
     getCurrentProduct,
     getStatusApi,
     getCurrentCategory,
+    getErrorMessageApi,
 } = productsSlice.selectors;
 
 export default productsSlice.reducer;
