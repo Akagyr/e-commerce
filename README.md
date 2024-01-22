@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Introduction:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The project consists of 4 pages: product page, individual product page, cart page and checkout page.
 
-## Available Scripts
+The header consists of the logo and a link to the shopping cart page. This link displays the number of products in the shopping cart.
 
-In the project directory, you can run:
+The main page is a main list of 6 products, a list of categories in the sidebar, and a search field.
 
-### `npm start`
+The product page presents data about the selected product.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The cart page presents a list of added products.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The page for placing an order consists of a form for entering the buyer's data and a list of products for which the order is placed.
 
-### `npm test`
+# Installation instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run locally, you need to install dependencies; to do this, use the command:
+
+### `npm i` or `npm install`
+
+To run the application on the hosting server, you need to create a project using the command:
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Then upload the build folder to the hosting.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Using the application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+There are two links in the header, this is the logo and a link to the cart page. By clicking on the logo you will be redirected to the main page. Clicking on the cart link will take you to the cart page.
 
-### `npm run eject`
+The home page has pagination that divides the entire product listing into 6 items on each pagination page. The list of categories on the sidebar is made in the form of buttons with a single choice; when you click on each category, the list of products will change depending on the selected category. Search field (made on the client side). The search is carried out by product name.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The product page provides data about the selected product with the ability to add the product to the cart by clicking the “Add” button, after which a message on the right next to the button will notify you of the successful addition. You can add a product an unlimited number of times by clicking the same button again.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+On the cart page there is a list of added products with the ability to change the number of products, it is at least 1, to remove a product from the cart there is a special “Remove from cart” button. The total amount of goods in the cart and the checkout button are also displayed; When clicked, you will be redirected to the checkout page. If there are no items in your cart, you will receive a notification on the cart page informing you that it is empty.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The customer data entry form on the order page is represented by three fields and a form submit button. The fields are checked for completeness, the email field is checked for correct mail, and the phone number field is checked for correct input format. After submitting the form, a message about the order is displayed in the console, and a message about the order is also sent to the manager by email. The list of goods is the list for which the order is placed.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# API
 
-## Learn More
+Link: https://fakestoreapi.com/products
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The project only used a get request.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The web application processes possible errors during interaction with the API (for example, if the server is unavailable). The text of the error is displayed as a message.
 
-### Code Splitting
+# Application testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Testing the application is done using the command:
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### `npm run test`
