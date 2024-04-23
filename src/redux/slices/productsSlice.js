@@ -5,7 +5,7 @@ export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async () => {
         try {
-            const { data } = await axios.get("https://fakestoreapi.com/products");
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}products`);
             return data;
         } catch (error) {
             throw error;
@@ -28,7 +28,7 @@ const productsSlice = createSlice({
         startShowingProduct: 0,
         endShowingProduct: 6,
         currentProduct: {},
-        currentCategory: "",
+        currentCategory: "all",
     },
     reducers: {
         filterProducts: (state, action) => {
@@ -40,12 +40,13 @@ const productsSlice = createSlice({
             state.newProductsArr = state.filteredProductsArr;
         },
         clearFilterProducts: (state) => {
+            state.currentCategory = "all";
             state.filteredProductsArr = [];
             state.newProductsArr = state.searchedProductsArr;
             state.countProducts = state.searchedProductsArr.length !== 0 ? state.searchedProductsArr.length : state.productsArr.length;
         },
         searchProducts: (state, action) => {
-            state.currentCategory = "";
+            state.currentCategory = "all";
             state.searchedProductsArr = state.productsArr.filter(el => el.title.toLowerCase().includes(action.payload.toLowerCase()));
             state.currentPage = 0;
             state.countProducts = state.searchedProductsArr.length;

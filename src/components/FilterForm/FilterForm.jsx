@@ -31,7 +31,7 @@ const FilterForm = () => {
     return (
         <Form className="filter-form">
             <Form.Check
-                checked={currentCategory === ""}
+                checked={currentCategory === "all"}
                 label="All"
                 value="all"
                 type="radio"
